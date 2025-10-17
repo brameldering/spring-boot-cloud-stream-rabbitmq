@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="footballnative" target="21" />
+      <module name="reactive" target="21" />
+      <module name="reactiveclient" target="21" />
+      <module name="spring-optimize" target="21" />
+      <module name="spring-optimize-native" target="21" />
+      <module name="spring-optimize-reactive" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="footballnative" options="-parameters" />
+      <module name="reactive" options="-parameters" />
+      <module name="reactiveclient" options="-parameters" />
+      <module name="spring-optimize" options="-parameters" />
+      <module name="spring-optimize-native" options="-parameters" />
+      <module name="spring-optimize-reactive" options="-parameters" />
+    </option>
+  </component>
+</project>
