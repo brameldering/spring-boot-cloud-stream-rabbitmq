@@ -7,6 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="matches" />
+        <module name="timeline" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,11 +23,13 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="footballnative" options="-parameters" />
+      <module name="matches" options="-parameters" />
       <module name="reactive" options="-parameters" />
       <module name="reactiveclient" options="-parameters" />
       <module name="spring-optimize" options="-parameters" />
       <module name="spring-optimize-native" options="-parameters" />
       <module name="spring-optimize-reactive" options="-parameters" />
+      <module name="timeline" options="-parameters" />
     </option>
   </component>
 </project>

@@ -19,7 +19,8 @@
     <description>A root POM for examples for Spring Cloud Stream examples.</description>
 
     <modules>
-        <module>footballnative</module>
+        <module>matches</module>
+        <module>timeline</module>
     </modules>
 
     <properties>
