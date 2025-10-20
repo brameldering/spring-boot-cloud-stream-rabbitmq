@@ -2,6 +2,7 @@ package com.packt.timeline;
 
 import com.packt.timeline.domain.MatchEvent;
 
+import java.util.Random;
 import java.util.function.Consumer;
 
 import org.slf4j.Logger;
@@ -21,7 +22,12 @@ public class ScoreApplication {
 
   @Bean
   public Consumer<MatchEvent> processGoals() {
+    Random random = new Random();
     return value -> {
+      if (random.nextInt(0,10) < 8) {
+        logger.error("Problem occurs");
+        throw new RuntimeException("Error processing goal");
+      }
       logger.info("Processing goal from player {} at {} ", value.player1(), value.eventTime());
     };
   }

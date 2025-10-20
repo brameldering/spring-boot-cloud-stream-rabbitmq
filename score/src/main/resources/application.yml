@@ -20,6 +20,8 @@ spring:
           input:
             consumer:
               binding-routing-key: football.goal.#
+              autoBindDlq: true
+              ttl: 1000
       function:
         bindings:
           processGoals-in-0: input
@@ -27,3 +29,5 @@ spring:
         input:
           destination: match-events-topic
           group: score
+          consumer:
+            maxAttempts: 3
