@@ -20,6 +20,7 @@
 
     <modules>
         <module>matches</module>
+        <module>score</module>
         <module>timeline</module>
     </modules>
 

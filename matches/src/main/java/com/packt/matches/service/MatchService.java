@@ -1,9 +1,13 @@
 package com.packt.matches.service;
 
 import com.packt.matches.domain.MatchEvent;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
-import org.springframework.stereotype.Service;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+
+import reactor.core.publisher.Mono;
 
 @Service
 public class MatchService {
@@ -17,7 +21,20 @@ public class MatchService {
     this.bindingName = bindingName;
   }
 
-  public void createEvent(MatchEvent matchEvent) {
-    streamBridge.send(bindingName, matchEvent);
+  public Mono<MatchEvent> createEvent(MatchEvent matchEvent) {
+    MessageBuilder<MatchEvent> messageBuilder = MessageBuilder.withPayload(matchEvent);
+
+    if (matchEvent.type() == 2) {
+      messageBuilder.setHeader("eventType", "football.goals.sample");
+    } else {
+      messageBuilder.setHeader("eventType", "football.event");
+    }
+
+    Message<MatchEvent> message = messageBuilder.build();
+    if (streamBridge.send(bindingName, message)) {
+      return Mono.just(matchEvent);
+    } else {
+      return Mono.empty();
+    }
   }
 }

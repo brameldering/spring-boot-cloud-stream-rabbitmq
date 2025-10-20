@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="matches" />
         <module name="timeline" />
+        <module name="score" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -26,6 +27,7 @@
       <module name="matches" options="-parameters" />
       <module name="reactive" options="-parameters" />
       <module name="reactiveclient" options="-parameters" />
+      <module name="score" options="-parameters" />
       <module name="spring-optimize" options="-parameters" />
       <module name="spring-optimize-native" options="-parameters" />
       <module name="spring-optimize-reactive" options="-parameters" />

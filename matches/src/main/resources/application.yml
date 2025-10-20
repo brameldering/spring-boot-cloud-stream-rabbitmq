@@ -19,3 +19,9 @@ spring:
       bindings:
         matchEvents-out-0:
           destination: match-events-topic
+      rabbit:
+        bindings:
+          matchEvents-out-0:
+            producer:
+              routing-key-expression: headers.eventType
+

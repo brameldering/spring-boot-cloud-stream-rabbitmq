@@ -4,6 +4,8 @@ import com.packt.matches.domain.MatchEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.messaging.Message;
 
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -17,18 +19,26 @@ public class MatchesApplication {
 	}
 
   @Bean
-  public Supplier<MatchEvent> matchEvents() {
+  public Supplier<Message<MatchEvent>> matchEvents() {
     Random random = new Random();
     return () -> {
-      return MatchEvent.builder()
+      MatchEvent matchEvent = MatchEvent.builder()
           .withMatchId(1L)
           .withType(random.nextInt(0, 10))
           .withEventTime(LocalDateTime.now())
           .withDescription("random event")
-          .withPlayer1(null)
-          .withPlayer2(null)
+          .withPlayer1(random.nextLong(1000, 2000))
+          .withPlayer2(random.nextLong(1000, 2000))
           .build();
+
+      MessageBuilder<MatchEvent> messageBuilder = MessageBuilder.withPayload(matchEvent);
+      if (matchEvent.type() == 2) {
+        messageBuilder.setHeader("eventType", "football.goal");
+      } else {
+        messageBuilder.setHeader("eventType", "football.event");
+      }
+
+      return messageBuilder.build();
     };
   }
-
 }
